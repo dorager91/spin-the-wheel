@@ -1,6 +1,6 @@
 import React from 'react';
 import Wheel from './components/Wheel';
-import ChipControls from './components/ChipControls';
+import ChipControls from './components/ChipControl';
 import Result from './components/Result';
 
 function App() {

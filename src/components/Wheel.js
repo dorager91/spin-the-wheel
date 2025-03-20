@@ -1,38 +1,49 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { spinWheel } from '../redux/slotsSlice';
+import React, { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import '../styles/wheel.css';
 
 const Wheel = () => {
     const slots = useSelector(state => state.slots.timeSlots);
-    const dispatch = useDispatch();
-    const [spinning, setSpinning] = useState(false);
-    const [rotation, setRotation] = useState(0);
 
-    const handleSpin = () => {
-        dispatch(spinWheel());
-        const newRotation = rotation + 360 * 3 + Math.floor(Math.random() * 360);
-        setRotation(newRotation);
-        setSpinning(true);
+    const totalChips = useMemo(() => {
+        return slots.reduce((sum, s) => sum + s.chips, 0);
+    }, [slots]);
 
-        setTimeout(() => {
-            setSpinning(false);
-        }, 3000);
-    };
+    const gradientString = useMemo(() => {
+        let currentAngle = 0;
+        const segments = [];
+
+        const colorPalette = [
+            '#FF6363', '#FFA600', '#FFBD69', '#58508D', '#BC5090',
+            '#34D399', '#60A5FA', '#A78BFA', '#F87171', '#FBBF24'
+        ];
+
+
+        console.log("=== Building conic gradient ===");
+        console.log("Total Chips:", totalChips);
+
+        slots.forEach((slot, i) => {
+            // Avoid divide-by-zero
+            const sliceAngle = totalChips > 0
+                ? (slot.chips / totalChips) * 360
+                : (1 / slots.length) * 360;
+
+            const nextAngle = currentAngle + sliceAngle;
+            const color = colorPalette[i % colorPalette.length];
+            segments.push(`${color} ${currentAngle}deg ${nextAngle}deg`);
+            currentAngle = nextAngle;
+        });
+
+        // If you want the final segment to fill up to 360, ensure last angle ~ 360 deg
+        // Or you can let the sum of slices be exactly 360 if totalChips is correct.
+        return `conic-gradient(from 0deg, ${segments.join(', ')})`;
+    }, [slots, totalChips]);
 
     return (
         <div className="wheel-container">
-            <div
-                className={`wheel ${spinning ? 'spinning' : ''}`}
-                style={{ transform: `rotate(${rotation}deg)` }}
-            >
-                {slots.map((slot, index) => (
-                    <div key={slot.id} className="slice">
-                        {slot.label} ({slot.chips})
-                    </div>
-                ))}
+            <div className="wheel" style={{ background: gradientString }}>
+                {/* Optionally place a pointer or text */}
             </div>
-            <button onClick={handleSpin}>Spin the Wheel!</button>
         </div>
     );
 };
