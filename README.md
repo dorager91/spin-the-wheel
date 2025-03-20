@@ -1,3 +1,12 @@
+# Spin-the-Wheel Scheduler 🎡
+
+A React + Redux prototype for group scheduling using a spin-the-wheel interaction model.
+
+## Features
+- Place chips on preferred meeting times
+- Spin the wheel to select a time based on group preferences
+- Real-time feedback and voting
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
