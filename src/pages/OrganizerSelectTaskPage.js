@@ -25,7 +25,7 @@ function OrganizerSelectTaskPage() {
             <h2>I want to...</h2>
             <div style={{ marginTop: '20px' }}>
                 <button onClick={handleCreateNew}>Make a new event</button>
-                <button onClick={handleUpdateExisting}>Update/Use an existing event</button>
+                <button onClick={handleUpdateExisting}>Join an existing event</button>
             </div>
             <div style={{ marginTop: '20px' }}>
                 <button onClick={handleBack}>Back</button>
