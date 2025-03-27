@@ -1,8 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Wheel from '../components/Wheel';
-import { nanoid } from '@reduxjs/toolkit';
+import { createEvent } from '../redux/eventSlice';
 import '../styles/createEvent.css';
 
 function CreateEventPage() {
@@ -25,31 +25,32 @@ function CreateEventPage() {
 
     const handleAddSlot = () => {
         if (!newSlotDate || !newSlotTime) return;
-
         const label = `${newSlotDate} ${newSlotTime}`;
         const color = colorPalette[timeSlots.length % colorPalette.length];
-
-        // Each slot has { label, chips: 0, color }
         setTimeSlots([
             ...timeSlots,
             { label, chips: 0, color }
         ]);
-
         setNewSlotDate('');
         setNewSlotTime('');
     };
 
     const handleGenerateEvent = () => {
-        const eventId = nanoid();
-        /*
-        dispatch(createEvent({
-          name: eventName,
-          chipsPerParticipant: parseInt(chipsAvailable, 10),
-          deadline,
-          timeSlots
+        // parse the chips into a number
+        const chipsNum = parseInt(chipsAvailable, 10) || 0;
+
+        // Dispatch createEvent
+        const actionResult = dispatch(createEvent({
+            name: eventName,
+            chips: chipsNum,
+            deadline,
+            timeSlots
         }));
-        */
-        navigate(`/lobby/${eventId}`);
+        // The new eventId is in actionResult.payload.eventId
+        const { eventId } = actionResult.payload;
+
+        // Navigate to BetPage
+        navigate(`/bet/${eventId}`);
     };
 
     const handleBack = () => {
@@ -108,16 +109,15 @@ function CreateEventPage() {
                     <ul>
                         {timeSlots.map((slot, idx) => (
                             <li key={idx}>
-                                {/* small color box */}
-                                <span
-                                    style={{
-                                        display: 'inline-block',
-                                        width: '12px',
-                                        height: '12px',
-                                        backgroundColor: slot.color,
-                                        marginRight: '8px'
-                                    }}
-                                ></span>
+                <span
+                    style={{
+                        display: 'inline-block',
+                        width: '12px',
+                        height: '12px',
+                        backgroundColor: slot.color,
+                        marginRight: '8px'
+                    }}
+                />
                                 {slot.label}
                             </li>
                         ))}

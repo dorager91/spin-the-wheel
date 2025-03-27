@@ -50,6 +50,32 @@ export const eventsSlice = createSlice({
             if (slot) {
                 slot.chips += 1;
             }
+        },
+        spinWheel: (state, action) => {
+            // payload = { eventId }
+            const { eventId } = action.payload;
+            const event = state.events[eventId];
+            if (!event) return;
+
+            // Weighted random selection
+            const totalStickers = event.timeSlots.reduce((sum, s) => sum + s.chips, 0);
+            if (totalStickers === 0) {
+                event.winner = null;
+                return;
+            }
+
+            const rand = Math.random() * totalStickers;
+            let cumulative = 0;
+            let chosenSlot = null;
+            for (let slot of event.timeSlots) {
+                cumulative += slot.chips;
+                if (rand <= cumulative) {
+                    chosenSlot = slot;
+                    break;
+                }
+            }
+            // store winner in event
+            event.winner = chosenSlot; // e.g. { id, label, color, chips }
         }
     }
 });
