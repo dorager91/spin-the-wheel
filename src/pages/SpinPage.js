@@ -34,22 +34,33 @@ function SpinPage() {
 
     return (
         <div style={{ margin: '50px' }}>
-            <h2>Spin the Wheel to View the Winner!</h2>
+            <h2>Spin the Wheel to Create a Winner!</h2>
             <p>
                 <strong>Event ID:</strong> {eventId} <br/>
                 <strong>Event Name:</strong> {name} <br/>
                 <strong>Deadline:</strong> {deadline}
             </p>
 
-            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-                <div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '40px' }}>
+                <div style={{ marginBottom: '20px' }}>
                     <Wheel slots={timeSlots} spinning={spinning} />
                 </div>
-                <div>
-                    <button onClick={handleSpin} disabled={spinning}>
-                        {spinning ? 'Spinning...' : 'Spin!'}
-                    </button>
-                </div>
+                <button
+                    onClick={handleSpin}
+                    disabled={spinning}
+                    style={{
+                        fontSize: '1.2rem',
+                        padding: '0.6rem 1.2rem',
+                        cursor: 'pointer',
+                        borderRadius: '6px',
+                        backgroundColor: '#F87171',
+                        color: '#fff',
+                        border: 'none',
+                        minWidth: '120px'
+                    }}
+                >
+                    {spinning ? 'Spinning...' : 'Spin!'}
+                </button>
             </div>
 
             <button onClick={handleBack} style={{ marginTop: '20px' }}>
