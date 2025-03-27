@@ -1,71 +1,54 @@
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-// import { createEvent } from '../redux/eventsSlice'; // if you have an eventsSlice
-import { nanoid } from '@reduxjs/toolkit'; // if you need to generate an ID
+import Wheel from '../components/Wheel';
+import { nanoid } from '@reduxjs/toolkit';
+import '../styles/createEvent.css';
 
 function CreateEventPage() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    // Form fields for the event
     const [eventName, setEventName] = useState('');
     const [chipsAvailable, setChipsAvailable] = useState('');
     const [deadline, setDeadline] = useState('');
 
-    // For adding time slots
     const [newSlotDate, setNewSlotDate] = useState('');
     const [newSlotTime, setNewSlotTime] = useState('');
     const [timeSlots, setTimeSlots] = useState([]);
 
-    // Handle adding a new slot to our list
+    // A shared color palette for newly added slots
+    const colorPalette = [
+        '#FF6363', '#FFA600', '#FFBD69', '#58508D', '#BC5090',
+        '#34D399', '#60A5FA', '#A78BFA', '#F87171', '#FBBF24'
+    ];
+
     const handleAddSlot = () => {
         if (!newSlotDate || !newSlotTime) return;
+
         const label = `${newSlotDate} ${newSlotTime}`;
-        setTimeSlots([...timeSlots, { label, chips: 1 }]);
+        const color = colorPalette[timeSlots.length % colorPalette.length];
+
+        // Each slot has { label, chips: 0, color }
+        setTimeSlots([
+            ...timeSlots,
+            { label, chips: 0, color }
+        ]);
+
         setNewSlotDate('');
         setNewSlotTime('');
     };
 
-    // Generate a conic gradient so each timeslot is equally sized
-    const gradientString = useMemo(() => {
-        if (timeSlots.length === 0) {
-            // No slots yet → just a single color or none
-            return 'none';
-        }
-
-        let currentAngle = 0;
-        const sliceAngle = 360 / timeSlots.length;
-        const segments = [];
-        const colorPalette = [
-            '#F87171', '#FBBF24', '#34D399', '#60A5FA', '#A78BFA',
-            '#F472B6', '#2DD4BF', '#FACC15', '#4ADE80'
-        ];
-
-        for (let i = 0; i < timeSlots.length; i++) {
-            const nextAngle = currentAngle + sliceAngle;
-            const color = colorPalette[i % colorPalette.length];
-            segments.push(`${color} ${currentAngle}deg ${nextAngle}deg`);
-            currentAngle = nextAngle;
-        }
-
-        return `conic-gradient(${segments.join(',')})`;
-    }, [timeSlots]);
-
-    // Handle final event creation
     const handleGenerateEvent = () => {
-        // Example: dispatch to your eventsSlice or store
         const eventId = nanoid();
         /*
         dispatch(createEvent({
           name: eventName,
+          chipsPerParticipant: parseInt(chipsAvailable, 10),
           deadline,
-          chipsPerParticipant: parseInt(chipsAvailable, 10) || 0,
-          timeSlots,
+          timeSlots
         }));
         */
-
-        // For now, just navigate to the Lobby page with the new eventId
         navigate(`/lobby/${eventId}`);
     };
 
@@ -124,7 +107,19 @@ function CreateEventPage() {
                     </div>
                     <ul>
                         {timeSlots.map((slot, idx) => (
-                            <li key={idx}>{slot.label}</li>
+                            <li key={idx}>
+                                {/* small color box */}
+                                <span
+                                    style={{
+                                        display: 'inline-block',
+                                        width: '12px',
+                                        height: '12px',
+                                        backgroundColor: slot.color,
+                                        marginRight: '8px'
+                                    }}
+                                ></span>
+                                {slot.label}
+                            </li>
                         ))}
                     </ul>
                 </div>
@@ -137,9 +132,7 @@ function CreateEventPage() {
 
             <div className="right-panel">
                 <h3>Preview Wheel</h3>
-                <div className="preview-wheel" style={{ background: gradientString }}>
-                    {timeSlots.length === 0 && <p>No timeslots yet</p>}
-                </div>
+                <Wheel slots={timeSlots} />
             </div>
         </div>
     );

@@ -1,7 +1,7 @@
 // import React from 'react';
-// import Wheel from './components/Wheel';
-// import ChipControls from './components/ChipControl';
-// import Result from './components/Result';
+import Wheel from './components/Wheel';
+import ChipControls from './components/ChipControl';
+import Result from './components/Result';
 //
 // function App() {
 //   return (
@@ -13,7 +13,6 @@
 //       </div>
 //   );
 // }
-// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -27,6 +26,16 @@ import WinnerPage from './pages/WinnerPage';
 import EnterEventID from './pages/EnterEventID';
 import OrganizerSelectTaskPage from './pages/OrganizerSelectTaskPage';
 
+//
+// function App() {
+//   return (
+//       <div className="App">
+//         <h1>Spin-the-Wheel Scheduler 🎡</h1>
+//         <Wheel />
+//         <ChipControls />
+//         <Result />
+//       </div>
+//   );
 function App() {
     return (
         <Router>
