@@ -80,5 +80,5 @@ export const eventsSlice = createSlice({
     }
 });
 
-export const { createEvent, addChipToSlot } = eventsSlice.actions;
+export const { createEvent, addChipToSlot, spinWheel } = eventsSlice.actions;
 export default eventsSlice.reducer;
