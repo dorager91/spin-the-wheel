@@ -4,15 +4,23 @@ import { useNavigate } from 'react-router-dom';
 function WelcomePage() {
     const navigate = useNavigate();
 
-    const handleGetStarted = () => {
-        navigate('/role');
+    const handleOrganizer = () => {
+        // navigate to OrganizerSelectTaskPage
+        navigate('/organizer-tasks');
+    };
+
+    const handleParticipant = () => {
+        // Route to the new EnterEventID page
+        navigate('/enter-event');
     };
 
     return (
         <div style={{ textAlign: 'center', marginTop: '50px' }}>
-            <h1>Welcome! 🎉</h1>
-            <p>I am ...</p>
-            <button onClick={handleGetStarted}>Get Started</button>
+            <h1>🎉Welcome to</h1>
+            <h1>Spin-the-Wheel Scheduler 🎡</h1>
+            <h3>I am ...</h3>
+            <button onClick={handleOrganizer}>An Organizer</button>
+            <button onClick={handleParticipant}>A Participant</button>
         </div>
     );
 }

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,12 +7,9 @@ function EnterEventID() {
 
     const handleBack = () => {
         navigate('/role');
-        // or navigate(-1) if you want to go back in history
     };
 
     const handleNext = () => {
-        // For now, let's just navigate to the LobbyPage
-        // If you want to go to BetPage directly, do navigate(`/bet/${eventId}`)
         navigate(`/lobby/${eventId}`);
     };
 

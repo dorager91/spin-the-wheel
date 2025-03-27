@@ -1,4 +1,3 @@
-// src/pages/SpinPage.js
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -12,7 +11,6 @@ function SpinPage() {
     const [spinning, setSpinning] = useState(false);
     const event = useSelector(state => state.events.events[eventId]) || null;
 
-    // a conditional return
     if (!event) {
         return <div>No event found with ID: {eventId}</div>;
     }
@@ -25,7 +23,7 @@ function SpinPage() {
         setTimeout(() => {
             setSpinning(false);
             navigate(`/winner/${eventId}`);
-        }, 3000);
+        }, 1500);
     };
 
     const handleBack = () => {
