@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/spin-the-wheel-scheduler/static/css/main.a09800cb.css",
+    "main.js": "/spin-the-wheel-scheduler/static/js/main.2483c8ee.js",
+    "index.html": "/spin-the-wheel-scheduler/index.html",
+    "main.a09800cb.css.map": "/spin-the-wheel-scheduler/static/css/main.a09800cb.css.map",
+    "main.2483c8ee.js.map": "/spin-the-wheel-scheduler/static/js/main.2483c8ee.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a09800cb.css",
+    "static/js/main.2483c8ee.js"
+  ]
+}
