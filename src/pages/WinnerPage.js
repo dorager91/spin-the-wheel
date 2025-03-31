@@ -1,12 +1,15 @@
 // src/pages/WinnerPage.js
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Wheel from '../components/Wheel';
 
 function WinnerPage() {
     const { eventId } = useParams();
     const navigate = useNavigate();
+
+    const { state } = useLocation();
+    const finalAngle = state?.finalAngle || 0;
 
     const event = useSelector(state => state.events.events[eventId]);
     if (!event) {
@@ -31,7 +34,7 @@ function WinnerPage() {
                 <div>
                     <h3>{winner.label}</h3>
                     {/* Optionally show final wheel with highlight */}
-                    <Wheel slots={timeSlots} />
+                    <Wheel slots={timeSlots} rotationAngle={finalAngle}/>
                 </div>
             ) : (
                 <p>No winner was chosen yet.</p>

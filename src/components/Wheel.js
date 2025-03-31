@@ -2,7 +2,7 @@
 import React, { useMemo } from 'react';
 import '../styles/wheel.css';
 
-const Wheel = ({ slots }) => {
+const Wheel = ({ slots, rotationAngle = 0 }) => {
     const totalChips = useMemo(() => {
         return slots.reduce((sum, s) => sum + (s.chips || 0), 0);
     }, [slots]);
@@ -32,7 +32,8 @@ const Wheel = ({ slots }) => {
 
     return (
         <div className="wheel-container">
-            <div className="wheel" style={{ background: gradientString }}>
+            <div className="pointer"> ▼ </div>
+            <div className="wheel" style={{ background: gradientString, transform: `rotate(${rotationAngle}deg)` }}>
                 {slots.length === 0 && <p>No timeslots yet</p>}
             </div>
         </div>
