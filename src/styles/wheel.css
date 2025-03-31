@@ -10,7 +10,7 @@
     height: 100%;
     border: 5px solid #333;
     border-radius: 50%;
-    transition: transform 3s ease-out;
+    transition: transform 3s cubic-bezier(0.32, 0.64, 0.45, 1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,6 +21,14 @@
     transform-origin: center;
     text-align: center;
 }
+
+.pointer {
+    position: absolute;
+    top: -22px;
+    left: 51.5%;
+    transform: translateX(-50%);
+    font-size: 24px;
+  }
 
 .chip-controls {
     margin: 20px;
