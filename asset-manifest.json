@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/spin-the-wheel-scheduler/static/css/main.a09800cb.css",
-    "main.js": "/spin-the-wheel-scheduler/static/js/main.2483c8ee.js",
-    "index.html": "/spin-the-wheel-scheduler/index.html",
-    "main.a09800cb.css.map": "/spin-the-wheel-scheduler/static/css/main.a09800cb.css.map",
-    "main.2483c8ee.js.map": "/spin-the-wheel-scheduler/static/js/main.2483c8ee.js.map"
+    "main.css": "/spin-the-wheel/static/css/main.1c5b87c9.css",
+    "main.js": "/spin-the-wheel/static/js/main.81c2c6eb.js",
+    "index.html": "/spin-the-wheel/index.html",
+    "main.1c5b87c9.css.map": "/spin-the-wheel/static/css/main.1c5b87c9.css.map",
+    "main.81c2c6eb.js.map": "/spin-the-wheel/static/js/main.81c2c6eb.js.map"
   },
   "entrypoints": [
-    "static/css/main.a09800cb.css",
-    "static/js/main.2483c8ee.js"
+    "static/css/main.1c5b87c9.css",
+    "static/js/main.81c2c6eb.js"
   ]
 }
