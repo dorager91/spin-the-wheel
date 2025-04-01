@@ -12,7 +12,7 @@ import OrganizerSelectTaskPage from './pages/OrganizerSelectTaskPage';
 
 function App() {
     return (
-        <Router>
+        <Router basename="/spin-the-wheel">
             <Routes>
                 <Route path="/" element={<WelcomePage />} />
                 <Route path="/enter-event" element={<EnterEventID />} />
