@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/spin-the-wheel-scheduler.iml" filepath="$PROJECT_DIR$/.idea/spin-the-wheel-scheduler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/spin-the-wheel.iml" filepath="$PROJECT_DIR$/.idea/spin-the-wheel.iml" />
     </modules>
   </component>
 </project>
