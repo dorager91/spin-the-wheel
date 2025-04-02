@@ -17,7 +17,7 @@ function CreateEventPage() {
     const [newSlotTime, setNewSlotTime] = useState('');
     const [timeSlots, setTimeSlots] = useState([]);
 
-    // A shared color palette for newly added slots
+    // Shared color palette for new slots
     const colorPalette = [
         '#FF6363', '#FFA600', '#FFBD69', '#58508D', '#BC5090',
         '#34D399', '#60A5FA', '#A78BFA', '#F87171', '#FBBF24'
@@ -27,29 +27,20 @@ function CreateEventPage() {
         if (!newSlotDate || !newSlotTime) return;
         const label = `${newSlotDate} ${newSlotTime}`;
         const color = colorPalette[timeSlots.length % colorPalette.length];
-        setTimeSlots([
-            ...timeSlots,
-            { label, chips: 0, color }
-        ]);
+        setTimeSlots([...timeSlots, { label, chips: 0, color }]);
         setNewSlotDate('');
         setNewSlotTime('');
     };
 
     const handleGenerateEvent = () => {
-        // parse the chips into a number
         const chipsNum = parseInt(chipsAvailable, 10) || 0;
-
-        // Dispatch createEvent
         const actionResult = dispatch(createEvent({
             name: eventName,
             chips: chipsNum,
             deadline,
             timeSlots
         }));
-        // The new eventId is in actionResult.payload.eventId
         const { eventId } = actionResult.payload;
-
-        // Navigate to BetPage
         navigate(`/bet/${eventId}`);
     };
 
@@ -60,9 +51,9 @@ function CreateEventPage() {
     return (
         <div className="create-event-container">
             <div className="left-panel">
-                <h2>Make a new event</h2>
+                <h2 className="create-event-title">Make a New Event</h2>
                 <div className="form-group">
-                    <label>Event name:</label>
+                    <label>Event Name:</label>
                     <input
                         type="text"
                         value={eventName}
@@ -70,7 +61,7 @@ function CreateEventPage() {
                     />
                 </div>
                 <div className="form-group">
-                    <label>Stickers/Chips available:</label>
+                    <label>Stickers/Chips Available:</label>
                     <input
                         type="number"
                         value={chipsAvailable}
@@ -95,29 +86,29 @@ function CreateEventPage() {
                             placeholder="MM/DD"
                             value={newSlotDate}
                             onChange={(e) => setNewSlotDate(e.target.value)}
-                            style={{ width: '100px', marginRight: '5px' }}
+                            className="date-input"
                         />
                         <input
                             type="text"
                             placeholder="Time e.g. 11am"
                             value={newSlotTime}
                             onChange={(e) => setNewSlotTime(e.target.value)}
-                            style={{ width: '80px', marginRight: '5px' }}
+                            className="time-input"
                         />
-                        <button onClick={handleAddSlot}>Add time</button>
+                        <button onClick={handleAddSlot}>Add Time</button>
                     </div>
                     <ul>
                         {timeSlots.map((slot, idx) => (
                             <li key={idx}>
-                <span
-                    style={{
-                        display: 'inline-block',
-                        width: '12px',
-                        height: '12px',
-                        backgroundColor: slot.color,
-                        marginRight: '8px'
-                    }}
-                />
+                                <span
+                                    style={{
+                                        display: 'inline-block',
+                                        width: '12px',
+                                        height: '12px',
+                                        backgroundColor: slot.color,
+                                        marginRight: '8px'
+                                    }}
+                                />
                                 {slot.label}
                             </li>
                         ))}
@@ -125,13 +116,15 @@ function CreateEventPage() {
                 </div>
 
                 <div className="buttons-row">
-                    <button onClick={handleBack}>Back</button>
-                    <button onClick={handleGenerateEvent}>Generate event ID</button>
+                    <button className="back-button" onClick={handleBack}>Back</button>
+                    <button className="generate-event-button" onClick={handleGenerateEvent}>
+                        Generate Event ID
+                    </button>
                 </div>
             </div>
 
             <div className="right-panel">
-                <h3>Preview Wheel</h3>
+                <h3 className="wheel-preview-title">Preview Wheel</h3>
                 <Wheel slots={timeSlots} />
             </div>
         </div>

@@ -1,0 +1,76 @@
+/* Container styling */
+.organizer-task-container {
+    text-align: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  
+  /* Title styling */
+  .organizer-task-title {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Button container styling */
+  .button-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  /* "Make a new event" button styling (green) */
+  .organizer-action-button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 220px;
+  }
+  
+  .organizer-action-button:hover {
+    background-color: #45a049;
+  }
+  
+  /* "Join an existing event" button styling (blue) */
+  .join-event-button {
+    background-color: #007BFF;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 220px;
+  }
+  
+  .join-event-button:hover {
+    background-color: #0069D9;
+  }
+  
+  /* Back button styling (grey) */
+  .back-button {
+    background-color: grey;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 220px;
+  }
+  
+  .back-button:hover {
+    background-color: darkgrey;
+  }
+  

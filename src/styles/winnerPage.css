@@ -1,0 +1,58 @@
+/* Container styling */
+.winner-page-container {
+    text-align: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  
+  /* Title styling */
+  .winner-title {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Information text styling */
+  .winner-info {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 30px;
+  }
+  
+  /* Winner details container */
+  .winner-details {
+    margin-bottom: 20px;
+  }
+  
+  /* Winner label styling */
+  .winner-label {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  /* Message when no winner is chosen */
+  .no-winner {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  /* Back button styling */
+  .back-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: grey;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-button:hover {
+    background-color: darkgrey;
+  }
+  

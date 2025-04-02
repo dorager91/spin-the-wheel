@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch, useStore } from 'react-redux';
 import Wheel from '../components/Wheel';
 import { spinWheel } from '../redux/eventSlice';
+import '../styles/spinPage.css';
 
 function SpinPage() {
     const { eventId } = useParams();
@@ -28,7 +29,7 @@ function SpinPage() {
         setSpinning(true);
         setTimeout(() => {
             setSpinning(false);
-            navigate(`/winner/${eventId}`, {state: { finalAngle }});
+            navigate(`/winner/${eventId}`, { state: { finalAngle } });
         }, 3000);
     };
 
@@ -57,57 +58,46 @@ function SpinPage() {
             currentAngle += sliceAngle;
         }
       
-        // Margin might be too small
         const margin = 1;
         const safeStart = chosenSlotStart + margin;
         const safeEnd = chosenSlotEnd - margin;
       
         if (safeEnd < safeStart) {
-          return 360 * fullSpins - (chosenSlotStart + (chosenSlotEnd - chosenSlotStart) / 2);
+            return 360 * fullSpins - (chosenSlotStart + (chosenSlotEnd - chosenSlotStart) / 2);
         }
       
         const randomAngleInSlice = safeStart + Math.random() * (safeEnd - safeStart);
-      
         const finalRotation = 360 * fullSpins - randomAngleInSlice;
         return finalRotation;
-      };
+    };
 
     const handleBack = () => {
         navigate(`/lobby/${eventId}`);
     };
 
     return (
-        <div style={{ margin: '50px' }}>
-            <h2>Spin the Wheel to Create a Winner!</h2>
-            <p>
-                <strong>Event ID:</strong> {eventId} <br/>
-                <strong>Event Name:</strong> {name} <br/>
+        <div className="spin-page-container">
+            <h2 className="spin-page-title">Time to SPIN THE WHEEL!</h2>
+            <p className="spin-page-info">
+                <strong>Event ID:</strong> {eventId} <br />
+                <strong>Event Name:</strong> {name} <br />
                 <strong>Deadline:</strong> {deadline}
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '40px' }}>
-                <div style={{ marginBottom: '20px' }}>
+            <div className="spin-content">
+                <div className="wheel-wrapper">
                     <Wheel slots={timeSlots} rotationAngle={rotationAngle} spinning={spinning} />
                 </div>
                 <button
+                    className="spin-button"
                     onClick={handleSpin}
                     disabled={spinning}
-                    style={{
-                        fontSize: '1.2rem',
-                        padding: '0.6rem 1.2rem',
-                        cursor: 'pointer',
-                        borderRadius: '6px',
-                        backgroundColor: '#F87171',
-                        color: '#fff',
-                        border: 'none',
-                        minWidth: '120px'
-                    }}
                 >
                     {spinning ? 'Spinning...' : 'Spin!'}
                 </button>
             </div>
 
-            <button onClick={handleBack} style={{ marginTop: '20px' }}>
+            <button className="back-button" onClick={handleBack}>
                 Back to Lobby
             </button>
         </div>
