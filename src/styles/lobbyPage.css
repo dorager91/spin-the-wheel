@@ -1,0 +1,131 @@
+/* Container styling */
+.lobby-container {
+    text-align: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  
+  /* Title styling */
+  .lobby-title {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* Information text styling */
+  .lobby-info {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 30px;
+  }
+  
+  /* Main content area: flex layout for timeslot list and wheel preview */
+  .lobby-content {
+    display: flex;
+    justify-content: center;
+    gap: 1rem; /* Reduced gap to place timeslot list closer to the wheel */
+    margin-top: 40px;
+    margin-left: 240px;
+    flex-wrap: wrap;
+  }
+  
+  /* Timeslot list styling */
+  .timeslot-list {
+    text-align: left;
+  }
+  .timeslot-list h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  .slot-item {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Wheel container styling */
+  .wheel-container {
+    max-width: 400px;
+  }
+  
+  /* Button group styling */
+  .button-group {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  .button-group button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 180px;
+  }
+  
+  /* Green button styling */
+  .green-button {
+    background-color: #4CAF50;
+    color: white;
+  }
+  .green-button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Blue button styling */
+  .blue-button {
+    background-color: #007BFF;
+    color: white;
+  }
+  .blue-button:hover {
+    background-color: #0069D9;
+  }
+  
+  /* Grey button styling */
+  .grey-button {
+    background-color: grey;
+    color: white;
+  }
+  .grey-button:hover {
+    background-color: darkgrey;
+  }
+  
+  /* Not Found view styling */
+  .not-found-container {
+    text-align: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  .not-found-title {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .not-found-info {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 30px;
+  }
+  
+  /* Reuse back-button styling for not-found view */
+  .back-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: grey;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .back-button:hover {
+    background-color: darkgrey;
+  }
+  
