@@ -33,7 +33,6 @@ function WinnerPage() {
             {winner ? (
                 <div>
                     <h3>{winner.label}</h3>
-                    {/* Optionally show final wheel with highlight */}
                     <Wheel slots={timeSlots} rotationAngle={finalAngle}/>
                 </div>
             ) : (

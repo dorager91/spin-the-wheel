@@ -48,7 +48,6 @@ function BetPage() {
             </p>
 
             <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
-                {/* Left side: Chip controls */}
                 <div>
                     <h3>Current Stickers</h3>
                     {timeSlots.map(slot => (
