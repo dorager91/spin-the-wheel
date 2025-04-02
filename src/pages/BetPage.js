@@ -1,9 +1,9 @@
-// src/pages/BetPage.js
 import React, { useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { addChipToSlot } from '../redux/eventSlice';
 import Wheel from '../components/Wheel';
+import '../styles/betPage.css';
 
 function BetPage() {
     const { eventId } = useParams();
@@ -11,7 +11,7 @@ function BetPage() {
     const dispatch = useDispatch();
     const event = useSelector(state => state.events.events[eventId]);
 
-    // If event doesn't exist, fallback
+    // Fallbacks if event doesn't exist
     const fallbackSlots = [];
     const timeSlots = event ? event.timeSlots : fallbackSlots;
     const chipsPerParticipant = event ? event.chipsPerParticipant : 0;
@@ -38,32 +38,35 @@ function BetPage() {
     };
 
     return (
-        <div style={{ margin: '50px' }}>
-            <h2>Place Your Stickers!</h2>
-            <p>
+        <div className="bet-page-container">
+            <h2 className="bet-page-title">Place Your Stickers!</h2>
+            <p className="bet-page-info">
                 <strong>Event ID:</strong> {eventId} <br/>
                 <strong>Event Name:</strong> {name} <br/>
                 <strong>Stickers Available:</strong> {chipsLeft} / {chipsPerParticipant} <br/>
                 <strong>Deadline:</strong> {deadline}
             </p>
 
-            <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
-                <div>
+            <div className="bet-page-content">
+                {/* Left side: Chip controls */}
+                <div className="chip-controls">
                     <h3>Current Stickers</h3>
                     {timeSlots.map(slot => (
-                        <div key={slot.id} style={{ marginBottom: '8px' }}>
-              <span
-                  style={{
-                      display: 'inline-block',
-                      width: '12px',
-                      height: '12px',
-                      backgroundColor: slot.color,
-                      marginRight: '8px'
-                  }}
-              />
-                            {slot.label} - Stickers: {slot.chips}
+                        <div key={slot.id} className="slot-item">
+                            <span
+                                style={{
+                                    display: 'inline-block',
+                                    width: '12px',
+                                    height: '12px',
+                                    backgroundColor: slot.color,
+                                    marginRight: '8px'
+                                }}
+                            />
+                            <span>
+                                {slot.label} - Stickers: {slot.chips}
+                            </span>
                             <button
-                                style={{ marginLeft: '10px' }}
+                                className="add-chip-button"
                                 onClick={() => handleAddChip(slot.id)}
                                 disabled={chipsLeft <= 0}
                             >
@@ -74,12 +77,12 @@ function BetPage() {
                 </div>
 
                 {/* Right side: The Wheel */}
-                <div>
+                <div className="wheel-container">
                     <Wheel slots={timeSlots} />
                 </div>
             </div>
 
-            <button onClick={handleBack} style={{ marginTop: '20px' }}>
+            <button onClick={handleBack} className="back-button">
                 Back to Lobby
             </button>
         </div>

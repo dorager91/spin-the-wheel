@@ -1,13 +1,12 @@
-// src/pages/WinnerPage.js
 import React from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Wheel from '../components/Wheel';
+import '../styles/winnerPage.css';
 
 function WinnerPage() {
     const { eventId } = useParams();
     const navigate = useNavigate();
-
     const { state } = useLocation();
     const finalAngle = state?.finalAngle || 0;
 
@@ -23,23 +22,23 @@ function WinnerPage() {
     };
 
     return (
-        <div style={{ margin: '50px' }}>
-            <h2>WINNER!</h2>
-            <p>
-                <strong>Event ID:</strong> {eventId} <br/>
+        <div className="winner-page-container">
+            <h2 className="winner-title">WINNER!</h2>
+            <p className="winner-info">
+                <strong>Event ID:</strong> {eventId} <br />
                 <strong>Event Name:</strong> {name}
             </p>
 
             {winner ? (
-                <div>
-                    <h3>{winner.label}</h3>
-                    <Wheel slots={timeSlots} rotationAngle={finalAngle}/>
+                <div className="winner-details">
+                    <h3 className="winner-label">{winner.label}</h3>
+                    <Wheel slots={timeSlots} rotationAngle={finalAngle} />
                 </div>
             ) : (
-                <p>No winner was chosen yet.</p>
+                <p className="no-winner">No winner was chosen yet.</p>
             )}
 
-            <button onClick={handleBack} style={{ marginTop: '20px' }}>
+            <button className="back-button" onClick={handleBack}>
                 Back
             </button>
         </div>

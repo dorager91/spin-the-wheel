@@ -1,0 +1,98 @@
+/* Container styling */
+.bet-page-container {
+    text-align: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  
+  /* Title styling */
+  .bet-page-title {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Information paragraph styling */
+  .bet-page-info {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 30px;
+  }
+  
+  /* Main content container: flex layout for chip controls and wheel */
+  .bet-page-content {
+    display: flex;
+    margin-left: 240px;
+    gap: 1rem; /* Reduced gap to place current stickers closer to the wheel */
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  /* Chip controls container */
+  .chip-controls {
+    max-width: 400px;
+    text-align: left;
+  }
+  
+  /* Chip controls title */
+  .chip-controls h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  /* Each slot item */
+  .slot-item {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Add chip button styling */
+  .add-chip-button {
+    margin-left: 10px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    font-size: 0.9em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-chip-button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Disabled state styling for add chip button */
+  .add-chip-button:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+  }
+  
+  /* Wheel container styling */
+  .wheel-container {
+    max-width: 400px;
+  }
+  
+  /* Back button styling (grey) */
+  .back-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: grey;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  .back-button:hover {
+    background-color: darkgrey;
+  }
+  

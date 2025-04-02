@@ -1,0 +1,70 @@
+/* Container styling */
+.spin-page-container {
+    text-align: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  
+  /* Title styling */
+  .spin-page-title {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Info paragraph styling */
+  .spin-page-info {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 30px;
+  }
+  
+  /* Content area for wheel and spin button */
+  .spin-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+  }
+  
+  /* Wheel wrapper styling */
+  .wheel-wrapper {
+    margin-bottom: 20px;
+  }
+  
+  /* Spin button styling */
+  .spin-button {
+    font-size: 1.2rem;
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    border-radius: 6px;
+    background-color: #F87171;
+    color: #fff;
+    border: none;
+    min-width: 120px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .spin-button:hover {
+    background-color: #ef5f5f;
+  }
+  
+  /* Back button styling (grey) */
+  .back-button {
+    margin-top: 20px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: grey;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-button:hover {
+    background-color: darkgrey;
+  }
+  
