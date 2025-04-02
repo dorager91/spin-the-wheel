@@ -72,23 +72,8 @@ function SpinPage() {
         const finalRotation = 360 * fullSpins - randomAngleInSlice;
         return finalRotation;
     };
+    
 
-
-    const handleSpin = () => {
-        // Dispatch action to compute winner
-        dispatch(spinWheel({ eventId }));
-        // Get updated event from Redux store
-        const updatedEvent = store.getState().events.events[eventId];
-        const finalAngle = computeSpinAngle(updatedEvent.timeSlots, updatedEvent.winner);
-        setRotationAngle(finalAngle);
-        setSpinning(true);
-
-        setTimeout(() => {
-            setSpinning(false);
-            navigate(`/winner/${eventId}`, { state: { finalAngle } });
-        }, 3000);
-    };
-]]
 
     const handleBack = () => {
         navigate(`/lobby/${eventId}`);
