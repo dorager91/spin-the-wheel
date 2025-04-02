@@ -16,12 +16,17 @@ function WelcomePage() {
     return (
         <div className="welcome-container">
             <h1 className="welcome-title">🎉 Welcome to Spin-the-Wheel Scheduler 🎡</h1>
+            <br />
             <p className="welcome-description">
-                This conceptual model represents all possible meeting times as slices on “Spin the Wheel”. 
-                Participants place “stickers” on the time(s) they prefer. More “stickers” on a slice gives it a higher probability of winning. 
-                Once the deadline is met, the wheel is spun—whichever slice wins the spin is the chosen time.
+                Imagine planning your meeting like a fun game! <br />
+                Every possible meeting time is a vibrant slice on our wheel. <br />
+                Simply add your “stickers” to the times you prefer – the more stickers a slice gets, the higher its chance to win.
+                When the deadline hits, we’ll spin the wheel and let fate decide your meeting time. <br />
+                Turn scheduling into an exciting adventure! <br />
+                Ready to get started? <br />
             </p>
             <div className="button-group">
+                <strong>Choose your role:</strong>
                 <button className="organizer-button" onClick={handleOrganizer}>An Organizer</button>
                 <button className="participant-button" onClick={handleParticipant}>A Participant</button>
             </div>
