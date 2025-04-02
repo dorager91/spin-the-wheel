@@ -6,7 +6,7 @@ function EnterEventID() {
     const [eventId, setEventId] = useState('');
 
     const handleBack = () => {
-        navigate('/role');
+        navigate('/');
     };
 
     const handleNext = () => {

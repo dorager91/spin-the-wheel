@@ -17,7 +17,7 @@ function OrganizerSelectTaskPage() {
     };
 
     const handleBack = () => {
-        navigate('/role');
+        navigate('/');
     };
 
     return (
