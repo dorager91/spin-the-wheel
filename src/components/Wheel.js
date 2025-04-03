@@ -1,8 +1,9 @@
 // src/components/Wheel.js
 import React, { useMemo } from 'react';
 import '../styles/wheel.css';
+import SVGHighlightArc from './SVGHighlightArc';
 
-const Wheel = ({ slots, rotationAngle = 0, highlightedSlotId, spinning = false }) => {
+const Wheel = ({ slots, rotationAngle = 0, highlightedSlotId, spinning = false, winningSlotId }) => {
     const totalChips = useMemo(() => {
         return slots.reduce((sum, s) => sum + (s.chips || 0), 0);
     }, [slots]);
@@ -28,6 +29,26 @@ const Wheel = ({ slots, rotationAngle = 0, highlightedSlotId, spinning = false }
         background: gradientString,
         transform: `rotate(${rotationAngle}deg)`
     };
+    const winningAngles = useMemo(() => {
+        if (!winningSlotId) return null;
+        let currentAngle = 0;
+        let winningStart = 0, winningEnd = 0;
+        for (let slot of slots) {
+            const sliceAngle =
+                totalChips > 0
+                    ? (slot.chips / totalChips) * 360
+                    : (1 / slots.length) * 360;
+            const slotStart = currentAngle;
+            const slotEnd = currentAngle + sliceAngle;
+            if (slot.id === winningSlotId) {
+                winningStart = slotStart;
+                winningEnd = slotEnd;
+                break;
+            }
+            currentAngle += sliceAngle;
+        }
+        return { winningStart, winningEnd };
+      }, [winningSlotId, slots, totalChips]);
 
     return (
         <div className="wheel-container">
@@ -38,6 +59,7 @@ const Wheel = ({ slots, rotationAngle = 0, highlightedSlotId, spinning = false }
                 data-highlighted-slot={highlightedSlotId}
             >
                 {slots.length === 0 && <p>No timeslots yet</p>}
+                {winningSlotId && winningAngles && (<SVGHighlightArc startAngle={winningAngles.winningStart} endAngle={winningAngles.winningEnd} />)}
             </div>
         </div>
     );

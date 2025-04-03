@@ -52,11 +52,18 @@ function WinnerPage() {
 
       <section className="wheel-section">
         <div className="wheel-wrapper">
-          <Wheel
-            slots={timeSlots}
-            rotationAngle={finalAngle}
-            highlightedSlotId={winningSlot ? winningSlot.id : null}
-          />
+            {winner ? (
+                <div>
+                    <h3>{winner.label}</h3>
+                    <Wheel slots={timeSlots} rotationAngle={finalAngle} winningSlotId={winner.id}/>
+                </div>
+            ) : (
+                <p>No winner was chosen yet.</p>
+            )}
+
+            <button onClick={handleBack} style={{ marginTop: '20px' }}>
+                Back
+            </button>
         </div>
         {winningSlot ? (
           <p className="winner-text">
