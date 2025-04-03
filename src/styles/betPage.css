@@ -21,6 +21,13 @@
   margin-bottom: 30px;
 }
 
+/* Highlighted info styling */
+.highlighted-info {
+  background-color: #ffff99;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
 /* Main content container: flex layout for chip controls and wheel */
 .bet-page-content {
   display: flex;
