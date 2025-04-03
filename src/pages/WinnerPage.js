@@ -23,6 +23,15 @@ function WinnerPage() {
     navigate(`/lobby/${eventId}`);
   };
 
+  const handleSpinAgain = () => {
+    const confirmed = window.confirm(
+      "Are you sure you want to spin again?"
+    );
+    if (confirmed) {
+      navigate(`/spin/${eventId}`);
+    }
+  };
+
   return (
     <div className="winner-page-container">
       <header className="event-info">
@@ -61,8 +70,8 @@ function WinnerPage() {
                 <p>No winner was chosen yet.</p>
             )}
 
-            <button onClick={handleBack} style={{ marginTop: '20px' }}>
-                Back
+            <button className="spin-again-button" onClick={handleSpinAgain}>
+                Spin Again
             </button>
         </div>
         {winningSlot ? (

@@ -79,6 +79,18 @@
   margin-top: 20px;
 }
 
+.spin-again-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: grey;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
 .back-button:hover {
   background-color: darkgrey;
 }
