@@ -1,4 +1,3 @@
-// src/pages/BetPage.js
 import React, { useMemo, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -56,7 +55,9 @@ function BetPage() {
             <p className="bet-page-info">
                 <strong>Event ID:</strong> {eventId} <br/>
                 <strong>Event Name:</strong> {name} <br/>
-                <strong>Stickers Available:</strong> {userStickersLeft} / {chipsPerParticipant} <br/>
+                <span className="highlighted-info">
+                    <strong>Stickers Available:</strong> {userStickersLeft} / {chipsPerParticipant}
+                </span> <br/>
                 <strong>Deadline:</strong> {deadline}
             </p>
 
@@ -111,4 +112,3 @@ function BetPage() {
 }
 
 export default BetPage;
-
