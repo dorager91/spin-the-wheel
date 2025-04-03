@@ -61,7 +61,7 @@ function CreateEventPage() {
                     />
                 </div>
                 <div className="form-group">
-                    <label>Stickers/Chips Available:</label>
+                    <label>Stickers Available:</label>
                     <input
                         type="number"
                         value={chipsAvailable}
@@ -72,7 +72,7 @@ function CreateEventPage() {
                     <label>Deadline:</label>
                     <input
                         type="text"
-                        placeholder="MM/DD time"
+                        placeholder="eg. MM/DD 10PM"
                         value={deadline}
                         onChange={(e) => setDeadline(e.target.value)}
                     />
@@ -90,7 +90,7 @@ function CreateEventPage() {
                         />
                         <input
                             type="text"
-                            placeholder="Time e.g. 11am"
+                            placeholder="eg. 1pm"
                             value={newSlotTime}
                             onChange={(e) => setNewSlotTime(e.target.value)}
                             className="time-input"
