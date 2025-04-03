@@ -35,7 +35,7 @@ function LobbyPage() {
   };
 
   const handleEnterID = () => {
-    navigate(`/enter-event`);
+    navigate(`/`);
   };
 
   return (
@@ -81,7 +81,7 @@ function LobbyPage() {
           Spin the Wheel
         </button>
         <button className="grey-button" onClick={handleEnterID}>
-          View Another Event
+          Back to Home Page
         </button>
       </div>
     </div>

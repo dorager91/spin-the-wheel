@@ -1,5 +1,5 @@
 // src/pages/BetPage.js
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { addChipToSlot, removeChipFromSlot } from '../redux/eventSlice';
@@ -10,33 +10,40 @@ function BetPage() {
     const { eventId } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const event = useSelector(state => state.events.events[eventId]);
 
-    const fallbackSlots = [];
-    const timeSlots = event ? event.timeSlots : fallbackSlots;
+    // Retrieve event and user data from Redux
+    const event = useSelector(state => state.events.events[eventId]);
+    const user = useSelector(state => state.user); // { role, userId }
+
+    // Always call hooks unconditionally
+    const [userStickersPlaced, setUserStickersPlaced] = useState(0);
+
+    // Use fallback values if event is null, ensuring hooks are always called
+    const timeSlots = event ? event.timeSlots : [];
     const chipsPerParticipant = event ? event.chipsPerParticipant : 0;
     const name = event ? event.name : '';
     const deadline = event ? event.deadline : '';
+    const userStickersLeft = chipsPerParticipant - userStickersPlaced;
 
-    // sum all slot.chips to see how many have been used
     const totalUsed = useMemo(() => {
         return timeSlots.reduce((sum, s) => sum + s.chips, 0);
     }, [timeSlots]);
 
-    // compute how many stickers remain
-    const chipsLeft = chipsPerParticipant - totalUsed;
-
+    // Now conditionally render if event is not available
     if (!event) {
         return <div>No event found with ID: {eventId}</div>;
     }
 
     const handleAddChip = (slotId) => {
-        if (chipsLeft <= 0) return;
+        if (userStickersLeft <= 0) return;
         dispatch(addChipToSlot({ eventId, slotId }));
+        setUserStickersPlaced(prev => prev + 1);
     };
 
     const handleRemoveChip = (slotId) => {
+        if (userStickersPlaced <= 0) return;
         dispatch(removeChipFromSlot({ eventId, slotId }));
+        setUserStickersPlaced(prev => prev - 1);
     };
 
     const handleBack = () => {
@@ -49,37 +56,36 @@ function BetPage() {
             <p className="bet-page-info">
                 <strong>Event ID:</strong> {eventId} <br/>
                 <strong>Event Name:</strong> {name} <br/>
-                <strong>Stickers Available:</strong> {chipsLeft} / {chipsPerParticipant} <br/>
+                <strong>Stickers Available:</strong> {userStickersLeft} / {chipsPerParticipant} <br/>
                 <strong>Deadline:</strong> {deadline}
             </p>
 
             <div className="bet-page-content">
                 {/* Left side: Chip controls */}
                 <div className="chip-controls">
-                    <h3>Current Stickers</h3>
+                    <h3>Current Stickers on Time Slots</h3>
                     {timeSlots.map(slot => (
                         <div key={slot.id} className="slot-item">
-              <span
-                  style={{
-                      display: 'inline-block',
-                      width: '12px',
-                      height: '12px',
-                      backgroundColor: slot.color,
-                      marginRight: '8px'
-                  }}
-              />
+                            <span
+                                style={{
+                                    display: 'inline-block',
+                                    width: '12px',
+                                    height: '12px',
+                                    backgroundColor: slot.color,
+                                    marginRight: '8px'
+                                }}
+                            />
                             <span>
-                {slot.label} - Stickers: {slot.chips}
-              </span>
+                                {slot.label} - Stickers: {slot.chips}
+                            </span>
                             <button
                                 className="add-chip-button"
                                 onClick={() => handleAddChip(slot.id)}
-                                disabled={chipsLeft <= 0}
+                                disabled={userStickersLeft <= 0}
                                 style={{ marginLeft: '10px', marginRight: '5px' }}
                             >
                                 +1 Sticker
                             </button>
-                            {/* new remove chip button */}
                             <button
                                 className="remove-chip-button"
                                 onClick={() => handleRemoveChip(slot.id)}
@@ -105,3 +111,4 @@ function BetPage() {
 }
 
 export default BetPage;
+
