@@ -27,7 +27,7 @@
     justify-content: center;
     gap: 1rem; /* Reduced gap to place timeslot list closer to the wheel */
     margin-top: 40px;
-    margin-left: 240px;
+    margin-left: 200px;
     flex-wrap: wrap;
   }
   

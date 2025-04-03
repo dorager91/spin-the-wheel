@@ -1,58 +1,84 @@
 /* Container styling */
 .winner-page-container {
-    text-align: center;
-    padding: 40px 20px;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  }
-  
-  /* Title styling */
-  .winner-title {
-    font-size: 2em;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  /* Information text styling */
-  .winner-info {
-    font-size: 1em;
-    color: #555;
-    margin-bottom: 30px;
-  }
-  
-  /* Winner details container */
-  .winner-details {
-    margin-bottom: 20px;
-  }
-  
-  /* Winner label styling */
-  .winner-label {
-    font-size: 1.5em;
-    color: #333;
-    margin-bottom: 15px;
-  }
-  
-  /* Message when no winner is chosen */
-  .no-winner {
-    font-size: 1em;
-    color: #555;
-    margin-bottom: 20px;
-  }
-  
-  /* Back button styling */
-  .back-button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 8px;
-    background-color: grey;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .back-button:hover {
-    background-color: darkgrey;
-  }
-  
+  text-align: center;
+  padding: 40px 20px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Event information styling */
+.event-info h2 {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.event-info p {
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Slot list styling */
+.slot-list {
+  margin-top: 30px;
+  text-align: center;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slot-list h3 {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 5px;  /* Reduced margin for closer placement */
+  text-align: center;
+}
+
+.slot-item {
+  margin-bottom: 8px;
+  padding: 4px 0;
+  display: block;
+  border-bottom: 1px solid #ddd;
+  font-size: 0.95em;
+}
+
+/* Wheel section styling */
+.wheel-section {
+  margin-top: 40px;
+}
+
+.wheel-wrapper {
+  margin-bottom: 20px;
+}
+
+/* Winner text styling */
+.winner-text {
+  font-size: 1.2em;
+  color: #333;
+  margin-top: 10px;
+}
+
+.no-winner {
+  font-size: 1em;
+  color: #555;
+  margin-top: 10px;
+}
+
+/* Back button styling */
+.back-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: grey;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.back-button:hover {
+  background-color: darkgrey;
+}
