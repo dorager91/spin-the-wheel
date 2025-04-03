@@ -24,7 +24,7 @@
 /* Main content container: flex layout for chip controls and wheel */
 .bet-page-content {
   display: flex;
-  margin-left: 240px; /* Adjust if needed */
+  margin-left: 160px; /* Adjust if needed */
   gap: 1rem; /* Reduced gap to place current stickers closer to the wheel */
   align-items: flex-start;
   justify-content: center;
