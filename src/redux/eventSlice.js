@@ -79,9 +79,37 @@ export const eventsSlice = createSlice({
             }
             // Store the entire slot as the winner
             event.winner = chosenSlot;
+        },
+        addTimeSlot: {
+            reducer: (state, action) => {
+              const { eventId, newSlot } = action.payload;
+              const event = state.events[eventId];
+              if (event) {
+                event.timeSlots.push(newSlot);
+              }
+            },
+            prepare: ({ eventId, label, chips = 0, color }) => {
+              return {
+                payload: {
+                  eventId,
+                  newSlot: {
+                    id: nanoid(),
+                    label,
+                    chips,
+                    color: color || '#ccc'
+                  }
+                }
+              };
+            }
+        },
+        removeTimeSlot: (state, action) => {
+            const { eventId, slotId } = action.payload;
+            const event = state.events[eventId];
+            if (!event) return;
+            event.timeSlots = event.timeSlots.filter(slot => slot.id !== slotId);
         }
     }
 });
 
-export const { createEvent, addChipToSlot, removeChipFromSlot, spinWheel } = eventsSlice.actions;
+export const { createEvent, addChipToSlot, removeChipFromSlot, spinWheel, addTimeSlot, removeTimeSlot } = eventsSlice.actions;
 export default eventsSlice.reducer;
