@@ -72,7 +72,7 @@ function SpinPage() {
         const finalRotation = 360 * fullSpins - randomAngleInSlice;
         return finalRotation;
     };
-    
+
 
 
     const handleBack = () => {
