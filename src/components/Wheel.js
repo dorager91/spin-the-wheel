@@ -31,6 +31,7 @@ const Wheel = ({ slots, rotationAngle = 0, highlightedSlotId, spinning = false }
 
     return (
         <div className="wheel-container">
+            <div className="pointer"> ▼ </div>
             <div
                 className={`wheel ${spinning ? 'spinning' : ''}`}
                 style={wheelStyle}

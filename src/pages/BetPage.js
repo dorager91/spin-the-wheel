@@ -98,7 +98,7 @@ function BetPage() {
             </div>
 
             <button onClick={handleBack} className="back-button">
-                To Event Lobby
+                Event Lobby
             </button>
         </div>
     );
