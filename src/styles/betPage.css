@@ -104,6 +104,23 @@
   cursor: not-allowed;
 }
 
+/* Add Time Slot button styling */
+.new-slot-form button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  font-size: 0.9em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 10px;
+}
+
+.new-slot-form button:hover {
+  background-color: #45a049;
+}
+
 /* Wheel container styling */
 .wheel-container {
   max-width: 400px;
