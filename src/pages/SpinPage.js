@@ -20,7 +20,60 @@ function SpinPage() {
 
     const { name, deadline, timeSlots, winner } = event;
 
+    const parseDeadline = (deadlineStr) => {
+        if (!deadlineStr) return null;
+      
+        let parts = deadlineStr.trim().split(" ");
+        const datePart = parts[0];
+        let timePartOriginal = parts[1] || "12am";
+      
+        let periodMatch = timePartOriginal.match(/(am|pm)$/i);
+        let period = "";
+        let timePart = timePartOriginal;
+        if (!periodMatch) {
+            period = 'am';
+        } else {
+            period = periodMatch[0].toLowerCase();
+            timePart = timePart.replace(/(am|pm)$/i, '').trim();
+        }
+      
+        let hour, minute = 0;
+        if (timePart.includes(":")) {
+            const [h, m] = timePart.split(":");
+            hour = parseInt(h, 10);
+            minute = parseInt(m, 10);
+        } else {
+            hour = parseInt(timePart, 10);
+        }
+        if (isNaN(hour)) return null;
+        
+        if (period === 'pm' && hour < 12) {
+            hour += 12;
+        }
+        if (period === 'am' && hour === 12) {
+            hour = 0;
+        }
+        
+        const dateParts = datePart.split("/");
+        if (dateParts.length !== 2) return null;
+        const month = parseInt(dateParts[0], 10);
+        const day = parseInt(dateParts[1], 10);
+        if (isNaN(month) || isNaN(day)) return null;
+        
+        const currentYear = new Date().getFullYear();
+        return new Date(currentYear, month - 1, day, hour, minute);
+    };
+
     const handleSpin = () => {
+        const deadlineTime = parseDeadline(deadline);
+        const now = new Date();
+        if (now < deadlineTime) {
+            const confirmed = window.confirm("The deadline has not elapsed yet. Are you sure you want to spin the wheel anyway?");
+            if (!confirmed) {
+                return;
+            }
+        }
+
         dispatch(spinWheel({ eventId }));
         const updatedEvent = store.getState().events.events[eventId];
 
