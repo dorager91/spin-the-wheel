@@ -75,7 +75,7 @@ function LobbyPage() {
 
       <div className="button-group">
         <button className="green-button" onClick={handleBet}>
-          Place Stickers
+          Place Stickers/<br />Modify Time Slots
         </button>
         <button className="blue-button" onClick={handleSpin}>
           Spin the Wheel

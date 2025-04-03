@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { addChipToSlot, removeChipFromSlot } from '../redux/eventSlice';
+import { addChipToSlot, removeChipFromSlot, addTimeSlot, removeTimeSlot } from '../redux/eventSlice';
 import Wheel from '../components/Wheel';
 import '../styles/betPage.css';
 
@@ -16,6 +16,8 @@ function BetPage() {
 
     // Always call hooks unconditionally
     const [userStickersPlaced, setUserStickersPlaced] = useState(0);
+    const [newSlotDate, setNewSlotDate] = useState('');
+    const [newSlotTime, setNewSlotTime] = useState('');
 
     // Use fallback values if event is null, ensuring hooks are always called
     const timeSlots = event ? event.timeSlots : [];
@@ -45,13 +47,33 @@ function BetPage() {
         setUserStickersPlaced(prev => prev - 1);
     };
 
+    const handleRemoveTimeSlot = (slotId, slotLabel) => {
+        const confirmed = window.confirm(`Are you sure you want to remove this time slot "${slotLabel}"?`);
+        if (confirmed) {
+            dispatch(removeTimeSlot({ eventId, slotId }));
+        }
+    };
+
+    const handleAddTimeSlot = () => {
+        if (!newSlotDate || !newSlotTime) return;
+        const label = `${newSlotDate} ${newSlotTime}`;
+        const colorPalette = [
+            '#FF6363', '#FFA600', '#FFBD69', '#58508D', '#BC5090',
+            '#34D399', '#60A5FA', '#A78BFA', '#F87171', '#FBBF24'
+        ];
+        const color = colorPalette[timeSlots.length % colorPalette.length];
+        dispatch(addTimeSlot({ eventId, label, chips: 0, color }));
+        setNewSlotDate('');
+        setNewSlotTime('');
+    };
+
     const handleBack = () => {
         navigate(`/lobby/${eventId}`);
     };
 
     return (
         <div className="bet-page-container">
-            <h2 className="bet-page-title">Place Your Stickers!</h2>
+            <h2 className="bet-page-title">Place Your Stickers<br /> or<br /> Modify Time Slots!</h2>
             <p className="bet-page-info">
                 <strong>Event ID:</strong> {eventId} <br/>
                 <strong>Event Name:</strong> {name} <br/>
@@ -67,6 +89,13 @@ function BetPage() {
                     <h3>Current Stickers on Time Slots</h3>
                     {timeSlots.map(slot => (
                         <div key={slot.id} className="slot-item">
+                            <button
+                                className="remove-slot-button"
+                                onClick={() => handleRemoveTimeSlot(slot.id, slot.label)}
+                                title="Remove Time Slot"
+                            >
+                                &#8722;
+                            </button>
                             <span
                                 style={{
                                     display: 'inline-block',
@@ -96,6 +125,26 @@ function BetPage() {
                             </button>
                         </div>
                     ))}
+                    <div className="new-slot-form">
+                        <h3>Add a New Time Slot</h3>
+                        <div>
+                            <input
+                                type="text"
+                                placeholder="MM/DD"
+                                value={newSlotDate}
+                                onChange={(e) => setNewSlotDate(e.target.value)}
+                                className="date-input"
+                            />
+                            <input
+                                type="text"
+                                placeholder="Time (e.g., 11am)"
+                                value={newSlotTime}
+                                onChange={(e) => setNewSlotTime(e.target.value)}
+                                className="time-input"
+                            />
+                            <button onClick={handleAddTimeSlot}>Add Time Slot</button>
+                        </div>
+                    </div>
                 </div>
 
                 {/* Right side: The Wheel */}
