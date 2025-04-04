@@ -65,6 +65,12 @@ function SpinPage() {
     };
 
     const handleSpin = () => {
+        const totalChips = timeSlots.reduce((sum, s) => sum + s.chips, 0);
+        if (totalChips === 0) {
+            alert("No one has voted yet. You cannot spin the wheel until someone votes!");
+            return;
+        }
+        
         const deadlineTime = parseDeadline(deadline);
         const now = new Date();
         if (now < deadlineTime) {
